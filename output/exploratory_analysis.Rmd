@@ -1,0 +1,22 @@
+---
+title: "Untitled"
+output: html_document
+---
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+library(sf)
+library(tidyverse)
+```
+
+```{load data, cache=TRUE, include=FALSE}
+crime_data <- here::here("analysis_data/met_crime_data.rds") |>
+  read_rds()
+
+crime_sf <- crime_data |>
+  drop_na(x, y) |>
+  st_as_sf(coords = c("x", "y"), crs = 27700)
+```
